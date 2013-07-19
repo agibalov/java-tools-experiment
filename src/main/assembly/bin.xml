@@ -9,15 +9,52 @@
 		<format>zip</format>
 	</formats>
 	<fileSets>
+		<!-- Applications -->
 		<fileSet>
 			<directory>target/appassembler/repo</directory>
-			<outputDirectory>repo</outputDirectory>
+			<outputDirectory>apps/repo</outputDirectory>
 		</fileSet>
 		<fileSet>
 			<directory>target/appassembler/bin</directory>
-			<outputDirectory>/bin</outputDirectory>
+			<outputDirectory>apps/bin</outputDirectory>
 			<fileMode>0755</fileMode>
 			<directoryMode>755</directoryMode>
+		</fileSet>
+		
+		<!-- Server Daemon -->
+		<fileSet>
+			<directory>target/generated-resources/appassembler/jsw/server-daemon/bin</directory>
+			<outputDirectory>daemons/server-daemon/bin</outputDirectory>
+			<fileMode>0755</fileMode>
+			<directoryMode>755</directoryMode>
+		</fileSet>
+		
+		<fileSet>
+			<directory>target/generated-resources/appassembler/jsw/server-daemon/conf</directory>
+			<outputDirectory>daemons/server-daemon/conf</outputDirectory>
+		</fileSet>
+		
+		<fileSet>
+			<directory>target/generated-resources/appassembler/jsw/server-daemon/lib</directory>
+			<outputDirectory>daemons/server-daemon/lib</outputDirectory>
+		</fileSet>		
+		
+		<!-- Client Daemon -->
+		<fileSet>
+			<directory>target/generated-resources/appassembler/jsw/client-daemon/bin</directory>
+			<outputDirectory>daemons/client-daemon/bin</outputDirectory>
+			<fileMode>0755</fileMode>
+			<directoryMode>755</directoryMode>
+		</fileSet>
+		
+		<fileSet>
+			<directory>target/generated-resources/appassembler/jsw/client-daemon/conf</directory>
+			<outputDirectory>daemons/client-daemon/conf</outputDirectory>
+		</fileSet>
+		
+		<fileSet>
+			<directory>target/generated-resources/appassembler/jsw/client-daemon/lib</directory>
+			<outputDirectory>daemons/client-daemon/lib</outputDirectory>
 		</fileSet>
 	</fileSets>
 </assembly>
