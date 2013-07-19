@@ -1,0 +1,73 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+
+	<groupId>me.loki2302</groupId>
+	<artifactId>appassembler-maven-plugin-experiment</artifactId>
+	<version>0.0.1-SNAPSHOT</version>
+	<packaging>jar</packaging>
+
+	<name>appassembler-maven-plugin-experiment</name>
+	<url>http://maven.apache.org</url>
+
+	<properties>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+	</properties>
+
+	<dependencies>
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<version>3.8.1</version>
+			<scope>test</scope>
+		</dependency>		
+	</dependencies>
+	
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.codehaus.mojo</groupId>
+				<artifactId>appassembler-maven-plugin</artifactId>
+				<version>1.4</version>
+				<configuration>
+					<assembleDirectory>${project.build.directory}/dist</assembleDirectory>
+					<programs>
+						<program>
+							<mainClass>me.loki2302.ServerApp</mainClass>
+							<name>server</name>
+						</program>
+						<program>
+							<mainClass>me.loki2302.ClientApp</mainClass>
+							<name>client</name>
+						</program>
+					</programs>
+					<daemons>
+						<daemon>
+							<id>server-daemon</id>
+							<mainClass>me.loki2302.ServerApp</mainClass>
+							<platforms>
+								<platform>jsw</platform>
+							</platforms>							
+						</daemon>
+						<daemon>
+							<id>client-daemon</id>
+							<mainClass>me.loki2302.ClientApp</mainClass>
+							<platforms>
+								<platform>jsw</platform>
+							</platforms>							
+						</daemon>
+					</daemons>
+				</configuration>
+				<executions>
+					<execution>
+						<phase>package</phase>
+						<goals>
+							<goal>assemble</goal>
+							<goal>generate-daemons</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+		</plugins>
+	</build>
+</project>
