@@ -20,9 +20,14 @@
 			<artifactId>junit</artifactId>
 			<version>3.8.1</version>
 			<scope>test</scope>
-		</dependency>		
+		</dependency>
+		<dependency>
+			<groupId>tanukisoft</groupId>
+			<artifactId>wrapper</artifactId>
+			<version>3.2.3</version>
+		</dependency>
 	</dependencies>
-	
+
 	<build>
 		<plugins>
 			<plugin>
@@ -30,7 +35,6 @@
 				<artifactId>appassembler-maven-plugin</artifactId>
 				<version>1.4</version>
 				<configuration>
-					<assembleDirectory>${project.build.directory}/dist</assembleDirectory>
 					<programs>
 						<program>
 							<mainClass>me.loki2302.ServerApp</mainClass>
@@ -44,17 +48,17 @@
 					<daemons>
 						<daemon>
 							<id>server-daemon</id>
-							<mainClass>me.loki2302.ServerApp</mainClass>
+							<mainClass>me.loki2302.ServerDaemon</mainClass>
 							<platforms>
 								<platform>jsw</platform>
-							</platforms>							
+							</platforms>
 						</daemon>
 						<daemon>
 							<id>client-daemon</id>
-							<mainClass>me.loki2302.ClientApp</mainClass>
+							<mainClass>me.loki2302.ClientDaemon</mainClass>
 							<platforms>
 								<platform>jsw</platform>
-							</platforms>							
+							</platforms>
 						</daemon>
 					</daemons>
 				</configuration>
@@ -67,6 +71,22 @@
 						</goals>
 					</execution>
 				</executions>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-assembly-plugin</artifactId>
+				<version>2.4</version>
+				<executions>
+					<execution>
+						<phase>package</phase>
+						<goals>
+							<goal>single</goal>
+						</goals>
+					</execution>
+				</executions>
+				<configuration>
+					<descriptor>src/main/assembly/bin.xml</descriptor>
+				</configuration>
 			</plugin>
 		</plugins>
 	</build>
