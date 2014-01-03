@@ -1,0 +1,13 @@
+apply plugin: "groovy"
+apply plugin: "application"
+
+mainClassName = "me.loki2302.App"
+
+repositories {
+  mavenCentral()
+}
+
+dependencies {
+  compile "org.codehaus.groovy:groovy-all:2.2.0"
+  testCompile "junit:junit:4.11"
+}
