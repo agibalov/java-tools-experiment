@@ -1,0 +1,8 @@
+task task1 << {
+  println "I am task1 and I don't depend on anything"
+}
+
+task task2(dependsOn: task1) << {
+  println "I am task2 and I depend on task1"
+}
+
