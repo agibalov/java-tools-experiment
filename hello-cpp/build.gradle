@@ -1,0 +1,12 @@
+apply plugin: "cpp-exe"
+
+sources {
+	main {
+		cpp {
+			source {
+				srcDir "src"
+				include "**/*.cpp"
+			}
+		}
+	}
+}
