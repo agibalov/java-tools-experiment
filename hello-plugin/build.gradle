@@ -1,0 +1,9 @@
+apply plugin: MyPlugin
+
+class MyPlugin implements Plugin<Project> {
+  void apply(Project project) {
+    project.task('thetask') << {
+      println "Hello from MyPlugin, project name is ${project.name}"
+    }
+  }
+}
