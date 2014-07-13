@@ -1,9 +1,27 @@
-apply plugin: MyPlugin
+apply plugin: SimpleHelloPlugin
+apply plugin: CustomizableHelloPlugin
 
-class MyPlugin implements Plugin<Project> {
-  void apply(Project project) {
-    project.task('thetask') << {
-      println "Hello from MyPlugin, project name is ${project.name}"
-    }
-  }
+// run as 'gradle simpleHi'
+class SimpleHelloPlugin implements Plugin<Project> {
+	void apply(Project project) {
+		project.task('simpleHi') << {
+			println "SimpleHelloPlugin says 'hi!'. Project name is ${project.name}"
+		}
+	}
 }
+
+// run as 'gradle customizableHi'
+class CustomizableHelloPlugin implements Plugin<Project> {
+	void apply(Project project) {
+		project.extensions.create("greeting", CustomizableHelloPluginExtension)
+		project.task('customizableHi') << {
+			println "CustomizableHelloPlugin says '${project.greeting.hiMessage}'!"
+		}
+	}	
+}
+
+class CustomizableHelloPluginExtension {
+	def String hiMessage = "default hi message"
+}
+
+greeting.hiMessage = "Custom HI message" // comment this out to fallback to default
