@@ -1,27 +1,12 @@
-apply plugin: SimpleHelloPlugin
-apply plugin: CustomizableHelloPlugin
+// A simple plugin that adds a single task 'hi' to the project
+// Nothing to customize, just run with `gradle hi`
 
-// run as 'gradle simpleHi'
-class SimpleHelloPlugin implements Plugin<Project> {
+apply plugin: HelloPlugin
+
+class HelloPlugin implements Plugin<Project> {
 	void apply(Project project) {
-		project.task('simpleHi') << {
-			println "SimpleHelloPlugin says 'hi!'. Project name is ${project.name}"
+		project.task('hi') << {
+			println "HelloPlugin says 'hi!'. Project name is ${project.name}"
 		}
 	}
 }
-
-// run as 'gradle customizableHi'
-class CustomizableHelloPlugin implements Plugin<Project> {
-	void apply(Project project) {
-		project.extensions.create("greeting", CustomizableHelloPluginExtension)
-		project.task('customizableHi') << {
-			println "CustomizableHelloPlugin says '${project.greeting.hiMessage}'!"
-		}
-	}	
-}
-
-class CustomizableHelloPluginExtension {
-	def String hiMessage = "default hi message"
-}
-
-greeting.hiMessage = "Custom HI message" // comment this out to fallback to default

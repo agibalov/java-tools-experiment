@@ -1,0 +1,34 @@
+// A Hello plugin that adds 'hi' and 'bye' tasks to the project
+// A message can be configured with `greeting` object
+// Run as `gradle hi` or `gradle bye`
+// If `greeting` is not configured, default settings are used
+
+apply plugin: HelloPlugin
+
+class HelloPlugin implements Plugin<Project> {
+	void apply(Project project) {
+		project.extensions.create("greeting", HelloPluginExtension)
+
+		project.task('hi') << {
+			println "HelloPlugin says '${project.greeting.hi}'!"
+		}
+
+		project.task('bye') << {
+			println "HelloPlugin says '${project.greeting.bye}'!"
+		}
+	}	
+}
+
+class HelloPluginExtension {
+	def String hi = "default hi message"
+	def String bye = "default bye message"
+}
+
+greeting {
+	hi = "Custom HI message"
+	bye = "Custom BYE message"	
+}
+
+// alternative way to customize greeting:
+// greeting.hi = "Custom HI message"
+// greeting.bye = "Custom BYE message"
