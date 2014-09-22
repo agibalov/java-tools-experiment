@@ -1,0 +1,49 @@
+buildscript {
+    repositories {
+        jcenter()
+    }
+    dependencies {
+        classpath 'com.moowork.gradle:gradle-node-plugin:0.6'
+    }
+}
+
+apply plugin: 'java'
+apply plugin: 'com.moowork.node'
+
+sourceCompatibility = 1.5
+version = '1.0'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    testCompile group: 'junit', name: 'junit', version: '4.11'
+}
+
+node {
+    version = '0.11.10'
+    download = true
+    workDir = file("${project.projectDir}/nodejs")
+}
+
+task bowerInstall(type: NodeTask, dependsOn: 'npmInstall') {
+    script = file('node_modules/bower/bin/bower')
+    args = ['install']
+}
+
+task gruntBuild(type: NodeTask, dependsOn: 'bowerInstall') {
+    script = file('node_modules/grunt-cli/bin/grunt')
+    args = ['build']
+}
+
+task gruntClean(type: NodeTask, dependsOn: 'npmInstall') {
+    script = file('node_modules/grunt-cli/bin/grunt')
+    args = ['clean']
+}
+
+processResources.dependsOn('gruntBuild')
+clean.dependsOn('gruntClean')
+
+// ./gradlew clean build
+// ./gradlew clean

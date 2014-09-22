@@ -1,2 +1,5 @@
 rootProject.name = 'gradle-node-experiment'
 
+include 'fe', 'be'
+
+
