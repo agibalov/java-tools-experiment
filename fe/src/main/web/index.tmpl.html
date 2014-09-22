@@ -1,0 +1,14 @@
+<form role="form" ng-submit="addNumbers()">
+    <div class="form-group">
+        <label for="numberA" class="control-label">Number A</label>
+        <input type="text" id="numberA" ng-model="a" class="form-control">
+    </div>
+    <div class="form-group">
+        <label for="numberB" class="control-label">Number B</label>
+        <input type="text" id="numberB" ng-model="b" class="form-control">
+    </div>
+    <div class="alert alert-success" ng-if="result">
+        <strong>Hurray!</strong> The result is {{result}}.
+    </div>
+    <button type="submit" class="btn btn-default">Add!</button>
+</form>
