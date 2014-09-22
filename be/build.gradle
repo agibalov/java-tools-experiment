@@ -25,3 +25,7 @@ dependencies {
     compile("org.springframework.boot:spring-boot-starter-web:1.1.6.RELEASE")
     compile project(':fe')
 }
+
+// Heroku wants it
+task stage(dependsOn: 'build') {
+}
