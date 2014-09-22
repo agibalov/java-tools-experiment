@@ -37,10 +37,13 @@ task gruntBuild(type: NodeTask, dependsOn: 'bowerInstall') {
     args = ['build']
 }
 
-task gruntClean(type: NodeTask) {
+task gruntClean(type: NodeTask, dependsOn: 'npmInstall') {
     script = file('node_modules/grunt-cli/bin/grunt')
     args = ['clean']
 }
 
-// ./gradlew clean gruntBuild
-// ./gradlew gruntClean
+processResources.dependsOn('gruntBuild')
+clean.dependsOn('gruntClean')
+
+// ./gradlew clean build
+// ./gradlew clean

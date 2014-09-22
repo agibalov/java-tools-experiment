@@ -1,1 +1,1 @@
-`./gradlew clean gruntBuild` and `./gradlew gruntClean`.
+`./gradlew clean build` and `./gradlew clean`.
