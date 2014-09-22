@@ -1,7 +1,7 @@
 module.exports = function(grunt) {
 
     grunt.initConfig({
-        builddir: "b",
+        builddir: "src/main/resources/resources",
         copy: {
             bootstrap: {
                 expand: true,

@@ -27,12 +27,12 @@ node {
     workDir = file("${project.buildDir}/nodejs")
 }
 
-task bowerInstall(type: NodeTask) {
+task bowerInstall(type: NodeTask, dependsOn: 'npmInstall') {
     script = file('node_modules/bower/bin/bower')
     args = ['install']
 }
 
-task gruntBuild(type: NodeTask) {
+task gruntBuild(type: NodeTask, dependsOn: 'bowerInstall') {
     script = file('node_modules/grunt-cli/bin/grunt')
     args = ['build']
 }
@@ -42,6 +42,5 @@ task gruntClean(type: NodeTask) {
     args = ['clean']
 }
 
-// ./gradlew clean npmInstall bowerInstall gruntBuild
+// ./gradlew clean gruntBuild
 // ./gradlew gruntClean
-

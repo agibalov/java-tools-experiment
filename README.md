@@ -1,1 +1,1 @@
-`./gradlew clean npmInstall bowerInstall gruntBuild` and `./gradlew gruntClean`.
+`./gradlew clean gruntBuild` and `./gradlew gruntClean`.
