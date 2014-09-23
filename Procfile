@@ -1,2 +1,1 @@
-web: java $JAVA_OPTS -jar -Dport=$PORT be/build/libs/be-1.0.jar
-
+web: java -jar -Dserver.port=$PORT be/build/libs/be-1.0.jar
