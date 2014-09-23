@@ -1,1 +1,6 @@
 script: ./gradlew clean build
+deploy:
+  provider: heroku
+  app: fast-fortress-9991
+  api_key:
+    secure: UVuNZQ3kAqME/sxDBM0+ns6Aff7fpLFdfZ+fqO3b7T7gQ3C2XXGQqC5YttO9An4DIWNvLpDMO3P5dmLN5sseclisWBQbYLUXW3EzOTcM0iQsdlvHCu5TMW2CVGpvAfAp07MQBaW4J9UXGKxYjQdtiYiJq8qF+9v10mdbGkOLWBU=
