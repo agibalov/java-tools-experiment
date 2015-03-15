@@ -3,50 +3,18 @@
 // Run as `gradle hi` or `gradle bye`
 // If `greeting` is not configured, default settings are used
 
-apply plugin: HelloPlugin
-
-class HelloPlugin implements Plugin<Project> {
-	void apply(Project project) {
-        def messages = project.container(String)
-		project.extensions.create("greeting", HelloPluginExtension)
-        project.extensions.greeting.messages = messages
-
-		project.task('hi') << {
-			println "HelloPlugin says '${project.greeting.hi}'!"
-		}
-
-		project.task('bye') << {
-			println "HelloPlugin says '${project.greeting.bye}'!"
-		}
-
-        project.task('printMessages') << {
-            project.greeting.messages.each { m ->
-                println "message: $m"
-            }
-        }
-	}	
-}
-
-class HelloPluginExtension {
-	String hi = "default hi message"
-	String bye = "default bye message"
-    def messages;
-}
-
-class Message {
-    final String name
-    String message
-
-    Message(String name) {
-        this.name = name
-    }
-}
+apply from: 'HelloPlugin.groovy'
+apply plugin: 'HelloPlugin2'
 
 greeting {
 	hi = "Custom HI message"
 	bye = "Custom BYE message"
 
     messages = ['omg', 'wtf', 'bbq']
+}
+
+task wrapper(type: Wrapper) {
+    gradleVersion = '2.3'
 }
 
 // alternative way to customize greeting:
