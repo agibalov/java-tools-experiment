@@ -7,7 +7,9 @@ apply plugin: HelloPlugin
 
 class HelloPlugin implements Plugin<Project> {
 	void apply(Project project) {
+        def messages = project.container(String)
 		project.extensions.create("greeting", HelloPluginExtension)
+        project.extensions.greeting.messages = messages
 
 		project.task('hi') << {
 			println "HelloPlugin says '${project.greeting.hi}'!"
@@ -16,17 +18,35 @@ class HelloPlugin implements Plugin<Project> {
 		project.task('bye') << {
 			println "HelloPlugin says '${project.greeting.bye}'!"
 		}
+
+        project.task('printMessages') << {
+            project.greeting.messages.each { m ->
+                println "message: $m"
+            }
+        }
 	}	
 }
 
 class HelloPluginExtension {
-	def String hi = "default hi message"
-	def String bye = "default bye message"
+	String hi = "default hi message"
+	String bye = "default bye message"
+    def messages;
+}
+
+class Message {
+    final String name
+    String message
+
+    Message(String name) {
+        this.name = name
+    }
 }
 
 greeting {
 	hi = "Custom HI message"
-	bye = "Custom BYE message"	
+	bye = "Custom BYE message"
+
+    messages = ['omg', 'wtf', 'bbq']
 }
 
 // alternative way to customize greeting:
