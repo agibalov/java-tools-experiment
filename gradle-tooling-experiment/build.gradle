@@ -1,0 +1,34 @@
+apply from: 'src/build.gradle'
+apply plugin: 'java'
+apply plugin: 'application'
+
+mainClassName = 'me.loki2302.App'
+
+sourceCompatibility = 1.5
+version = '1.0'
+
+repositories {
+    maven {
+        url 'https://repo.gradle.org/gradle/libs-releases-local'
+    }
+    mavenCentral()
+}
+
+dependencies {
+    testCompile group: 'junit', name: 'junit', version: '4.11'
+    compile "org.gradle:gradle-tooling-api:2.3"
+}
+
+task wrapper(type: Wrapper) {
+    gradleVersion = "2.3"
+}
+
+distributions {
+    main {
+        contents {
+            into('bin') {
+                from 'src/build.gradle'
+            }
+        }
+    }
+}
