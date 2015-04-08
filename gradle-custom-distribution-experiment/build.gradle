@@ -37,7 +37,12 @@ task everything(dependsOn: ['build'], type: Zip) {
         include '*.jar'
     }
     into('/') {
-        from 'extras/README'
+        from('extras/README') {
+            filter { line -> line.replace('%PRODUCT_NAME%', "$project.name-$project.version")}
+            filter { line -> line.replace('%PROJECT_NAME%', project.name)}
+            filter { line -> line.replace('%PROJECT_VERSION%', project.version)}
+        }
+
         from 'extras/runner.sh'
     }
     destinationDir new File(distributionDir)
