@@ -1,10 +1,16 @@
-//apply plugin: 'java'
-//apply plugin: 'application'
-
 plugins {
-    id 'java'
     id 'application'
     id 'com.github.johnrengelman.shadow' version '1.2.1'
+}
+
+configurations {
+    provided
+}
+
+sourceSets {
+    main {
+        compileClasspath += configurations.provided
+    }
 }
 
 mainClassName = 'me.loki2302.App'
@@ -23,5 +29,10 @@ repositories {
 
 dependencies {
     testCompile group: 'junit', name: 'junit', version: '4.11'
+
+    // when running ./gradlew clean shadowJar, this one will be included
     compile 'org.springframework.boot:spring-boot-starter:1.2.3.RELEASE'
+
+    // this one will be not:
+    provided 'org.springframework.boot:spring-boot-starter-web:1.2.3.RELEASE'
 }
