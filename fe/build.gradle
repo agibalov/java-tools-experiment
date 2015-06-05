@@ -3,7 +3,7 @@ buildscript {
         jcenter()
     }
     dependencies {
-        classpath 'com.moowork.gradle:gradle-node-plugin:0.8'
+        classpath 'com.moowork.gradle:gradle-node-plugin:0.10'
     }
 }
 
@@ -22,7 +22,7 @@ dependencies {
 }
 
 node {
-    version = '0.11.10'
+    version = '0.12.4'
     download = true
     workDir = file("${project.projectDir}/nodejs")
 }

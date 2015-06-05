@@ -3,7 +3,7 @@ buildscript {
         mavenCentral()
     }
     dependencies {
-        classpath 'org.springframework.boot:spring-boot-gradle-plugin:1.2.0.RELEASE'
+        classpath 'org.springframework.boot:spring-boot-gradle-plugin:1.2.3.RELEASE'
     }
 }
 
@@ -22,7 +22,7 @@ repositories {
 
 dependencies {
     testCompile group: 'junit', name: 'junit', version: '4.11'
-    compile("org.springframework.boot:spring-boot-starter-web:1.2.0.RELEASE")
+    compile("org.springframework.boot:spring-boot-starter-web:1.2.3.RELEASE")
     compile project(':fe')
 }
 
