@@ -50,5 +50,11 @@ task gruntClean(type: NodeTask, dependsOn: 'npmInstall') {
     args = ['clean']
 }
 
+task gruntTest(type: NodeTask, dependsOn: 'bowerInstall') {
+    script = file('node_modules/grunt-cli/bin/grunt')
+    args = ['test']
+}
+
 processResources.dependsOn('gruntBuild')
 clean.dependsOn('gruntClean')
+test.dependsOn('gruntTest')
