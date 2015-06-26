@@ -1,7 +1,6 @@
 module.exports = function(grunt) {
-
     grunt.initConfig({
-        builddir: "src/main/resources/resources",
+        builddir: "dist/resources",
         uglify: {
             app: {
                 src: "src/main/web/**/*.js",
@@ -39,5 +38,4 @@ module.exports = function(grunt) {
     grunt.loadNpmTasks("grunt-contrib-concat");
     grunt.loadNpmTasks("grunt-contrib-clean");
     grunt.registerTask("build", ["uglify", "copy", "concat"]);
-
 };
