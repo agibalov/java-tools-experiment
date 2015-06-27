@@ -1,5 +1,5 @@
 module.exports = function(config) {
-  config.set({
+  var c = {
     basePath: './',
     files: [
       'bower_components/angular/angular.js',
@@ -16,13 +16,21 @@ module.exports = function(config) {
     frameworks: ['jasmine'],
     plugins: [
       'karma-chrome-launcher',
+      'karma-firefox-launcher',
       'karma-jasmine',
       'karma-ng-html2js-preprocessor'
     ],
     ngHtml2JsPreprocessor: {
       stripPrefix: 'src/main/web/',
       moduleName: 'app.templates'
-    },
-    browsers: ['Chrome']
-  });
+    }
+  };
+
+  if(process.env.TRAVIS) {
+    c.browsers = ['Firefox'];
+  } else {
+    c.browsers = ['Firefox', 'Chrome'];
+  }
+
+  config.set(c);
 };
