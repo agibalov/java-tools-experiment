@@ -55,6 +55,8 @@ describe('the app', function() {
             expect(element(by.model('b')).getAttribute('value')).toBe('333');
 
             element(by.css('button')).click();
+
+            expect(element(by.css('.alert')).getText()).toBe('Hurray! The result is 555.');
         });
     });
 });
