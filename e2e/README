@@ -1,2 +1,0 @@
-1. Build BE with ./gradlew clean bootRepackage
-2. in e2e directory run grunt e2e-test
