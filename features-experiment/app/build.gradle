@@ -1,0 +1,46 @@
+buildscript {
+    repositories {
+        maven { url 'http://repo.spring.io/libs-snapshot' }
+    }
+    dependencies {
+        classpath 'org.springframework.boot:spring-boot-gradle-plugin:1.2.6.RELEASE'
+    }
+}
+
+group 'me.loki2302'
+version '1.0-SNAPSHOT'
+
+apply plugin: 'spring-boot'
+mainClassName = 'me.loki2302.app.App'
+
+sourceCompatibility = 1.5
+
+repositories {
+    mavenCentral()
+}
+
+configurations {
+    optional
+}
+
+sourceSets {
+    main {
+        compileClasspath += configurations.optional
+    }
+}
+
+dependencies {
+    testCompile group: 'junit', name: 'junit', version: '4.11'
+
+    if(project.hasProperty('withoutA')) {
+        optional project(':featurea')
+    } else {
+        compile project(':featurea')
+    }
+
+    if(project.hasProperty('withoutB')) {
+        optional project(':featureb')
+    } else {
+        compile project(':featureb')
+    }
+}

@@ -1,0 +1,5 @@
+rootProject.name = 'features-experiment'
+include 'featurea'
+include 'featureb'
+include 'app'
+
