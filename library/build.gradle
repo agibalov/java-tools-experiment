@@ -1,0 +1,31 @@
+group 'me.loki2302'
+version '1.0-SNAPSHOT'
+
+apply plugin: 'java'
+apply plugin: 'checkstyle'
+
+sourceCompatibility = 1.8
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    testCompile group: 'junit', name: 'junit', version: '4.11'
+    checkstyle group: 'com.puppycrawl.tools', name: 'checkstyle', version: '7.1.1'
+    checkstyle project(':dummy-check')
+}
+
+tasks.withType(Checkstyle) {
+    configFile = file('../checkstyle.xml')
+
+    reports {
+        xml.enabled false
+        html.enabled true
+    }
+}
+
+task checkstyleUi(type: JavaExec) {
+    classpath = files(project.configurations.checkstyle)
+    main = 'com.puppycrawl.tools.checkstyle.gui.Main'
+}

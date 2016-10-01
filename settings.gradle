@@ -1,2 +1,4 @@
 rootProject.name = 'checkstyle-experiment'
+include 'dummy-check'
+include 'library'
 
