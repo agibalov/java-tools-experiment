@@ -4,7 +4,7 @@ import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 
-public class DummyCheck extends AbstractCheck {
+public class SillyClassNameCheck extends AbstractCheck {
     @Override
     public int[] getDefaultTokens() {
         return new int[] { TokenTypes.CLASS_DEF };
@@ -14,7 +14,7 @@ public class DummyCheck extends AbstractCheck {
     public void visitToken(DetailAST ast) {
         String className = ast.findFirstToken(TokenTypes.IDENT).getText();
         if(className.equals("App")) {
-            log(ast, className + "? Really? So creative...");
+            log(ast, String.format("Just \"%s\"? Really? You must be a genius...", className));
         }
     }
 }

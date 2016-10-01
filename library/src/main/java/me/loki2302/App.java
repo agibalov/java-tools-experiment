@@ -8,6 +8,7 @@ public class App {
     public static void main(String[] args) {
         // TODO: make it more useful
         System.out.printf("hello world: %d\n", add(2, 3));
+        new Dummy3();
     }
 
     /**
@@ -30,4 +31,14 @@ public class App {
     private static int sub(int a, int b) {
         return a + b;
     }
+
+    /**
+     * Dummy1.
+     */
+    public static class Dummy1 {}
+
+    /**
+     * Dummy2.
+     */
+    public static class Dummy2 {}
 }

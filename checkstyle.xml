@@ -9,8 +9,12 @@
         <module name="TodoComment">
             <property name="severity" value="warning" />
         </module>
-        <module name="me.loki2302.DummyCheck">
+        <module name="me.loki2302.SillyClassNameCheck">
             <property name="severity" value="warning" />
         </module>
+    </module>
+    <module name="me.loki2302.ClassCountCheck">
+        <property name="fileExtensions" value="java" />
+        <property name="severity" value="warning" />
     </module>
 </module>
