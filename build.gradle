@@ -32,6 +32,7 @@ dependencies {
     testCompile group: 'junit', name: 'junit', version: '4.11'
     compile group: 'org.openjdk.jmh', name: 'jmh-core', version: '1.17.2'
     compile group: 'org.openjdk.jmh', name: 'jmh-generator-annprocess', version: '1.17.2'
+    //testCompile group: 'org.openjdk.jmh', name: 'jmh-generator-annprocess', version: '1.17.2'
 }
 
 jmh {
@@ -39,4 +40,8 @@ jmh {
     timeUnit = 'ms'
     warmupIterations = 10
     iterations = 10
+}
+
+test {
+    exclude '**/*_jmh*'
 }
