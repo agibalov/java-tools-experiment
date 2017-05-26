@@ -17,4 +17,9 @@
         <property name="fileExtensions" value="java" />
         <property name="severity" value="warning" />
     </module>
+    <module name="me.loki2302.SpringAppDesignCheck">
+        <property name="fileExtensions" value="java" />
+        <property name="sourceRoot" value="src/main/java" />
+        <property name="severity" value="error" />
+    </module>
 </module>
