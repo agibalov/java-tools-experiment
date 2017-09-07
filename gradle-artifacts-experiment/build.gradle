@@ -1,0 +1,33 @@
+configurations {
+    content
+}
+
+dependencies {
+    content project(path: ':chapter1', configuration: 'page')
+    content project(path: ':chapter2', configuration: 'page')
+}
+
+task dumpContentDependencies {
+    doLast {
+        configurations.content.resolvedConfiguration.resolvedArtifacts.each {
+            println "${it.name}, ${it.classifier}, ${it.extension}, ${it.type}"
+            println "path: ${it.file.absolutePath}"
+        }
+    }
+}
+
+task book(type: Zip) {
+    from configurations.content
+    archiveName = 'book.zip'
+    destinationDir = buildDir
+
+    doLast {
+        zipTree("${buildDir}/book.zip").files.each { println it }
+    }
+}
+
+allprojects {
+    task clean(type: Delete) {
+        delete buildDir
+    }
+}
