@@ -1,0 +1,30 @@
+task compile(type: JavaCompile) {
+    sourceCompatibility = '1.8'
+    targetCompatibility = '1.8'
+    source = fileTree(dir: 'src')
+    classpath = files()
+    destinationDir = file("${buildDir}/classes")
+}
+
+task jar(type: Jar, dependsOn: 'compile') {
+    archiveName = 'app.jar'
+    destinationDir = file("${buildDir}/jars")
+
+    from "${buildDir}/classes"
+
+    manifest {
+        attributes 'Main-Class': 'me.loki2302.App'
+    }
+}
+
+task run(type: Exec, dependsOn: 'jar') {
+    commandLine 'java', '-jar', "${buildDir}/jars/app.jar"
+}
+
+task clean(type: Delete) {
+    delete buildDir
+}
+
+task wrapper(type: Wrapper) {
+    version = '4.1'
+}
