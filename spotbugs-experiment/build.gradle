@@ -1,0 +1,32 @@
+plugins {
+    id 'java'
+    id 'com.github.spotbugs' version '1.6.5'
+}
+
+group 'io.agibalov'
+version '1.0-SNAPSHOT'
+
+sourceCompatibility = 1.8
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    testCompile group: 'junit', name: 'junit', version: '4.12'
+}
+
+spotbugs {
+    toolVersion = '3.1.8'
+    includeFilter = file('spotbugs.xml')
+    effort = 'max'
+    reportLevel = 'low'
+    showProgress = true
+}
+
+tasks.withType(com.github.spotbugs.SpotBugsTask) {
+    reports {
+        xml.enabled = false
+        html.enabled = true
+    }
+}
