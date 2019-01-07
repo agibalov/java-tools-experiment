@@ -1,0 +1,19 @@
+configurations {
+    page
+}
+
+task makePage1 {
+    doLast {
+        def file = file("$buildDir/page1.txt")
+        if(!file.isFile()) {
+            file.parentFile.mkdirs()
+            file.createNewFile()
+        }
+        file.write 'page 1 here'
+    }
+}
+
+artifacts {
+    page file: file("$buildDir/page1.txt"), builtBy: makePage1
+    page file('page2.txt')
+}

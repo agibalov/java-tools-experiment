@@ -1,0 +1,25 @@
+buildscript {
+	repositories {
+		mavenCentral()
+	}
+
+	dependencies {
+		classpath "com.sparkjava:spark-core:1.1.1"
+	}
+}
+
+import static spark.Spark.*
+import spark.*
+
+task run << {
+	get(new Route("/") {
+		@Override
+		public Object handle(Request request, Response response) {
+			return "Hello World!"
+		}
+	})
+
+	while(true) {
+		Thread.sleep(1000)
+	}
+}

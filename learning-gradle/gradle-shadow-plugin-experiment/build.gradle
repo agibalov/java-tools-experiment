@@ -1,0 +1,38 @@
+plugins {
+    id 'application'
+    id 'com.github.johnrengelman.shadow' version '1.2.1'
+}
+
+configurations {
+    provided
+}
+
+sourceSets {
+    main {
+        compileClasspath += configurations.provided
+    }
+}
+
+mainClassName = 'me.loki2302.App'
+
+sourceCompatibility = 1.5
+version = '1.0'
+
+task wrapper(type: Wrapper) {
+  gradleVersion = '2.3'
+  distributionUrl = 'http://services.gradle.org/distributions/gradle-2.3-all.zip'
+}
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    testCompile group: 'junit', name: 'junit', version: '4.11'
+
+    // when running ./gradlew clean shadowJar, this one will be included
+    compile 'org.springframework.boot:spring-boot-starter:1.2.3.RELEASE'
+
+    // this one will be not:
+    provided 'org.springframework.boot:spring-boot-starter-web:1.2.3.RELEASE'
+}

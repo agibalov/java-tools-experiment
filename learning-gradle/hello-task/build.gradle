@@ -1,0 +1,18 @@
+// run as `gradle hi` or `gradle bye`
+
+class PrintMessageTask extends DefaultTask {
+    def message
+
+    @TaskAction
+    def goPrintMessage() {
+        println "(PrintMessageTask working) printing '${message}'"
+    }
+}
+
+task hi(type: PrintMessageTask) {
+    message = "hi there!"
+}
+
+task bye(type: PrintMessageTask) {
+    message = "bye there!"
+}

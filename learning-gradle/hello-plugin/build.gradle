@@ -1,0 +1,12 @@
+// A simple plugin that adds a single task 'hi' to the project
+// Nothing to customize, just run with `gradle hi`
+
+apply plugin: HelloPlugin
+
+class HelloPlugin implements Plugin<Project> {
+	void apply(Project project) {
+		project.task('hi') << {
+			println "HelloPlugin says 'hi!'. Project name is ${project.name}"
+		}
+	}
+}

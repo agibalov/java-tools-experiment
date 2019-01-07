@@ -1,0 +1,4 @@
+rootProject.name = 'gradle-artifacts-experiment'
+include 'chapter1'
+include 'chapter2'
+

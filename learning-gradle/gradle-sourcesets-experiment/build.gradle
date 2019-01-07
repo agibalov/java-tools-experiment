@@ -1,0 +1,44 @@
+apply plugin: 'java'
+
+sourceSets {
+    basic {
+        java {
+            srcDir 'src/main/java'
+        }
+
+        resources {
+            srcDir 'src/main/resources'
+        }
+    }
+
+    pro {
+        java {
+            srcDir 'src/main/java'
+            srcDir 'src/pro/java'
+        }
+
+        resources {
+            srcDir 'src/main/resources'
+            srcDir 'src/pro/resources'
+        }
+    }
+}
+
+sourceSets.all { sourceSet ->
+    def jarTask = task("${sourceSet.name}Jar", type: Jar) {
+        archiveName = "${sourceSet.name}-${jar.archiveName}"
+        from sourceSet.output
+
+        manifest {
+            attributes 'Main-Class': 'me.loki2302.App'
+        }
+    }
+
+    def runTask = task("${sourceSet.name}Run", type: Exec, dependsOn: jarTask) {
+        commandLine 'java', '-jar', jarTask.archivePath
+    }
+
+    artifacts {
+        archives jarTask
+    }
+}

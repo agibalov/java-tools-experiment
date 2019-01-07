@@ -1,0 +1,5 @@
+%PRODUCT_NAME%
+
+Hello there. The product name is %PRODUCT_NAME%.
+Project name is %PROJECT_NAME%
+Project version is %PROJECT_VERSION%

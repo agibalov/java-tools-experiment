@@ -1,0 +1,9 @@
+task hello1 {
+  doLast {
+    println "hello world 1!"
+  }
+}
+
+task hello2 << {
+  println "hello world 2!"
+}

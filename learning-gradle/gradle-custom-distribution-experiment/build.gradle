@@ -1,0 +1,53 @@
+buildscript {
+    repositories {
+        mavenCentral()
+    }
+
+    dependencies {
+        classpath 'org.springframework.boot:spring-boot-gradle-plugin:1.2.3.RELEASE'
+    }
+}
+
+apply plugin: 'spring-boot'
+apply plugin: 'java'
+
+sourceCompatibility = 1.5
+version = '1.0'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    testCompile group: 'junit', name: 'junit', version: '4.11'
+    compile 'org.springframework.boot:spring-boot-starter-web'
+}
+
+// TODO: how do I make a directory inside an archive?
+// TODO: how do I take a bat-file template and substitute my values? (\gradle-2.3\src\plugins\org\gradle\api\internal\plugins\StartScriptGenerator.groovy)
+// TODO: how do I get the gradle-custom-distribution-experiment-1.0 name? ("$project.name-$project.version")
+
+ext {
+    distributionDir = "$buildDir/dist"
+}
+
+task everything(dependsOn: ['build'], type: Zip) {
+    into('/') {
+        from "$buildDir/libs"
+        include '*.jar'
+    }
+    into('/') {
+        from('extras/README') {
+            filter { line -> line.replace('%PRODUCT_NAME%', "$project.name-$project.version")}
+            filter { line -> line.replace('%PROJECT_NAME%', project.name)}
+            filter { line -> line.replace('%PROJECT_VERSION%', project.version)}
+        }
+
+        from 'extras/runner.sh'
+    }
+    destinationDir new File(distributionDir)
+}
+
+task printProjectNameAndProjectVersion() << {
+    println "$project.name-$project.version"
+}
