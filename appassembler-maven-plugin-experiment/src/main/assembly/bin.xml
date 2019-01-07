@@ -1,0 +1,60 @@
+<assembly
+	xmlns="http://maven.apache.org/plugins/maven-assembly-plugin/assembly/1.1.2"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/plugins/maven-assembly-plugin/assembly/1.1.2
+  http://maven.apache.org/xsd/assembly-1.1.2.xsd">
+
+	<id>bin</id>
+	<formats>
+		<format>zip</format>
+	</formats>
+	<fileSets>
+		<!-- Applications -->
+		<fileSet>
+			<directory>target/appassembler/repo</directory>
+			<outputDirectory>apps/repo</outputDirectory>
+		</fileSet>
+		<fileSet>
+			<directory>target/appassembler/bin</directory>
+			<outputDirectory>apps/bin</outputDirectory>
+			<fileMode>0755</fileMode>
+			<directoryMode>755</directoryMode>
+		</fileSet>
+		
+		<!-- Server Daemon -->
+		<fileSet>
+			<directory>target/generated-resources/appassembler/jsw/server-daemon/bin</directory>
+			<outputDirectory>daemons/server-daemon/bin</outputDirectory>
+			<fileMode>0755</fileMode>
+			<directoryMode>755</directoryMode>
+		</fileSet>
+		
+		<fileSet>
+			<directory>target/generated-resources/appassembler/jsw/server-daemon/conf</directory>
+			<outputDirectory>daemons/server-daemon/conf</outputDirectory>
+		</fileSet>
+		
+		<fileSet>
+			<directory>target/generated-resources/appassembler/jsw/server-daemon/lib</directory>
+			<outputDirectory>daemons/server-daemon/lib</outputDirectory>
+		</fileSet>		
+		
+		<!-- Client Daemon -->
+		<fileSet>
+			<directory>target/generated-resources/appassembler/jsw/client-daemon/bin</directory>
+			<outputDirectory>daemons/client-daemon/bin</outputDirectory>
+			<fileMode>0755</fileMode>
+			<directoryMode>755</directoryMode>
+		</fileSet>
+		
+		<fileSet>
+			<directory>target/generated-resources/appassembler/jsw/client-daemon/conf</directory>
+			<outputDirectory>daemons/client-daemon/conf</outputDirectory>
+		</fileSet>
+		
+		<fileSet>
+			<directory>target/generated-resources/appassembler/jsw/client-daemon/lib</directory>
+			<outputDirectory>daemons/client-daemon/lib</outputDirectory>
+		</fileSet>
+	</fileSets>
+</assembly>
