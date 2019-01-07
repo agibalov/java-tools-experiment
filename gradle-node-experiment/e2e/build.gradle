@@ -1,0 +1,28 @@
+buildscript {
+    repositories {
+        jcenter()
+    }
+    dependencies {
+        classpath 'com.moowork.gradle:gradle-node-plugin:0.11'
+    }
+}
+
+apply plugin: 'com.moowork.node'
+
+version = '1.0'
+
+node {
+    version = '4.1.1'
+    download = true
+    workDir = file("${project.projectDir}/nodejs")
+}
+
+task webdriverUpdate(type: NodeTask, dependsOn: 'npmInstall') {
+    script = file('node_modules/grunt-cli/bin/grunt')
+    args = ['webdriver-update']
+}
+
+task e2e(type: NodeTask, dependsOn: ['webdriverUpdate', ':be:bootRepackage']) {
+    script = file('node_modules/grunt-cli/bin/grunt')
+    args = ['e2e-test']
+}
